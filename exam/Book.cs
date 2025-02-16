@@ -30,5 +30,6 @@ namespace exam
         [Required]
         public int SellPrice { get; set; }
         public string? ChapterInfo { get; set; }
+        public Customer? Customer { get; set; }
     }
 }

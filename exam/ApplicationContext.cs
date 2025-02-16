@@ -24,7 +24,7 @@ namespace exam
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             var config = new ConfigurationBuilder()
-                            .AddJsonFile("appsettings.json")
+                            .AddJsonFile("C:\\Users\\vovan\\source\\repos\\exam\\exam\\appsettings.json")
                             .SetBasePath(Directory.GetCurrentDirectory())
                             .Build();
 
@@ -32,16 +32,12 @@ namespace exam
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<BookDiscount>().HasOne(p => p.Discount).WithMany().HasForeignKey(w => w.DiscountId).OnDelete(DeleteBehavior.Cascade);
-            modelBuilder.Entity<BookDiscount>().HasOne(p => p.Book).WithMany().HasForeignKey(w => w.BookId).OnDelete(DeleteBehavior.Cascade);
-            modelBuilder.Entity<BookCustomer>().HasOne(p => p.Customer).WithMany().HasForeignKey(w => w.CustomerId).OnDelete(DeleteBehavior.Cascade);
-            modelBuilder.Entity<BookCustomer>().HasOne(p => p.Book).WithMany().HasForeignKey(w => w.BookId).OnDelete(DeleteBehavior.Cascade);
-            modelBuilder.Entity<Customer>().HasOne(p => p.Book).WithOne().HasForeignKey(w => w.LeftBookId)
-
-
-
-
-
+            modelBuilder.Entity<BookDiscount>().HasOne(p => p.Discount).WithMany().HasForeignKey(w => w.DiscountId).OnDelete(DeleteBehavior.NoAction);
+            modelBuilder.Entity<BookDiscount>().HasOne(p => p.Book).WithMany().HasForeignKey(w => w.BookId).OnDelete(DeleteBehavior.NoAction);
+            modelBuilder.Entity<BookCustomer>().HasOne(p => p.Customer).WithMany().HasForeignKey(w => w.CustomerId).OnDelete(DeleteBehavior.NoAction);
+            modelBuilder.Entity<BookCustomer>().HasOne(p => p.Book).WithMany().HasForeignKey(w => w.BookId).OnDelete(DeleteBehavior.NoAction);
+            modelBuilder.Entity<Book>().HasOne(p => p.Customer).WithOne(p => p.Book).HasForeignKey<Customer>(p => p.LeftBookId).IsRequired(false).OnDelete(DeleteBehavior.NoAction);
+            base.OnModelCreating(modelBuilder);
         }
     }
 }
