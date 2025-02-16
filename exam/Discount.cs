@@ -14,12 +14,12 @@ namespace exam
         public string Name { get; set; }
         [Required]
         [Range(0, 100)]
-        public int Percent {  get; set; }
+        public int Percent { get; set; }
         [Required]
         [MaxLength(100)]
         public string SaleTopic { get; set; }
         [Required]
-        public DateOnly StartTime { get; set; }
+        public DateTime StartTime { get; set; }
         [Required]
         public DateTime? EndTime { get; set; }
     }

@@ -23,7 +23,7 @@ namespace exam
         [Required]
         public string Genre { get; set; }
         [Required]
-        public DateOnly Year { get; set; }
+        public DateTime Year { get; set; }
         [Required]
         [Column("Buyprice")]
         public int StartPrice { get; set; }
